@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ollama-benchmark-cli"
+version = "1.0.0"
+description = "Benchmark local Ollama models from your terminal with a standard prompt set."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "harisawan-bit" }]
+keywords = ["ollama", "benchmark", "llm", "cli", "performance"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = [
+    "click>=8.1.8",
+    "httpx>=0.28.1",
+    "psutil>=6.1.1",
+    "python-dotenv>=1.0.1",
+    "rich>=13.9.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/harisawan-bit/ollama-benchmark-cli"
+Repository = "https://github.com/harisawan-bit/ollama-benchmark-cli"
+Issues = "https://github.com/harisawan-bit/ollama-benchmark-cli/issues"
+Security = "https://github.com/harisawan-bit/ollama-benchmark-cli/blob/main/SECURITY.md"
+
+[project.scripts]
+ollama-benchmark = "main:cli"
+
+[tool.setuptools]
+py-modules = ["main", "cli", "benchmarks"]
