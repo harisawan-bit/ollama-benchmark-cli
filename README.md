@@ -1,5 +1,9 @@
 # ollama-benchmark-cli
 
+![CI](https://github.com/harisawan-bit/ollama-benchmark-cli/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 `ollama-benchmark-cli` is a Python terminal tool for benchmarking local Ollama models with a standard prompt set. It streams responses from Ollama, measures speed, and prints a color-coded Rich table.
 
 ## Features
@@ -138,20 +142,34 @@ CSV written to: C:\path\to\benchmark-results.csv
 - Inputs are length-limited and validated before being sent to Ollama or written to CSV.
 - Errors are handled without printing stack traces or internal Python tracebacks.
 
-## Push To GitHub
+## Development
 
-1. Create a new empty GitHub repository named `ollama-benchmark-cli`.
-2. Open PowerShell inside this project folder.
-3. Run:
+This repository is already on GitHub, so you just clone and install — no `git init` needed.
 
 ```bash
-git init
-git add .
-git add -f .env.example
-git commit -m "Initial ollama benchmark CLI"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/ollama-benchmark-cli.git
-git push -u origin main
+git clone https://github.com/harisawan-bit/ollama-benchmark-cli.git
+cd ollama-benchmark-cli
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -e .
+ollama-benchmark --help
 ```
 
-Why `git add -f .env.example`? Your security requirement says `.env.example` must be listed in `.gitignore`, but the repo should still contain the placeholder example file. The `-f` tells Git to include that safe placeholder file once.
+Run the smoke tests (they do not need a live Ollama server):
+
+```bash
+pip install pytest
+pytest -q
+```
+
+## Contributing
+
+1. Create a feature branch from `main`:
+   ```bash
+   git checkout -b feat/your-change main
+   ```
+2. Make your change and add tests where it makes sense.
+3. Run `pytest -q` and `ollama-benchmark --help` locally so they pass.
+4. Push the branch and open a pull request against `main`.
+
+CI runs a smoke test on Python 3.10, 3.11, and 3.12. A PR can only be merged when all checks are green. See [CONTRIBUTING.md](CONTRIBUTING.md) for full details.
